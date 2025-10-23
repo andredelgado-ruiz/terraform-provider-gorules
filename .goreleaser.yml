@@ -52,15 +52,15 @@ signs:
       - "${artifact}"
 
 release:
-  extra_files:
-    - glob: 'terraform-registry-manifest.json'
-      name_template: '{{ .ProjectName }}_{{ .Version }}_manifest.json'
   # If you want to manually examine the release before its live, uncomment this line:
   # draft: true
   header: |
     ## What's Changed
     
     **Full Changelog**: https://github.com/andredelgadoruiz/terraform-provider-gorules/compare/{{ .PreviousTag }}...{{ .Tag }}
+  extra_files:
+    - glob: 'terraform-registry-manifest.json'
+      name_template: '{{ .ProjectName }}_{{ .Version }}_manifest.json'
 
 changelog:
   use: github
