@@ -58,9 +58,6 @@ release:
     ## What's Changed
     
     **Full Changelog**: https://github.com/andredelgadoruiz/terraform-provider-gorules/compare/{{ .PreviousTag }}...{{ .Tag }}
-  extra_files:
-    - glob: 'terraform-registry-manifest.json'
-      name_template: '{{ .ProjectName }}_{{ .Version }}_manifest.json'
 
 changelog:
   use: github
