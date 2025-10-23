@@ -1,18 +1,18 @@
 #!/bin/bash
 
 # GoRules Terraform Provider Release Helper
-# Este script ayuda a preparar y crear releases del provider
+# This script helps prepare and create provider releases
 
 set -e
 
-# Colores para output
+# Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-# Funciones de utilidad
+# Utility functions
 log_info() {
     echo -e "${BLUE}[INFO]${NC} $1"
 }
@@ -29,121 +29,121 @@ log_error() {
     echo -e "${RED}[ERROR]${NC} $1"
 }
 
-# Verificar prerrequisitos
+# Check prerequisites
 check_prerequisites() {
-    log_info "Verificando prerrequisitos..."
+    log_info "Checking prerequisites..."
     
-    # Verificar Git
+    # Check Git
     if ! command -v git &> /dev/null; then
-        log_error "Git no está instalado"
+        log_error "Git is not installed"
         exit 1
     fi
     
-    # Verificar Go
+    # Check Go
     if ! command -v go &> /dev/null; then
-        log_error "Go no está instalado"
+        log_error "Go is not installed"
         exit 1
     fi
     
-    # Verificar que estamos en un repo Git
+    # Check that we're in a Git repository
     if ! git rev-parse --git-dir &> /dev/null; then
-        log_error "No estás en un repositorio Git"
+        log_error "You are not in a Git repository"
         exit 1
     fi
     
-    # Verificar que estamos en la rama main
+    # Check that we're on the main branch
     current_branch=$(git branch --show-current)
     if [ "$current_branch" != "main" ]; then
-        log_warning "No estás en la rama main (actual: $current_branch)"
-        read -p "¿Continuar? (y/N): " -n 1 -r
+        log_warning "You are not on the main branch (current: $current_branch)"
+        read -p "Continue? (y/N): " -n 1 -r
         echo
         if [[ ! $REPLY =~ ^[Yy]$ ]]; then
             exit 1
         fi
     fi
     
-    log_success "Prerrequisitos verificados"
+    log_success "Prerequisites verified"
 }
 
-# Verificar que no hay cambios sin commitear
+# Check that there are no uncommitted changes
 check_clean_state() {
-    log_info "Verificando estado del repositorio..."
+    log_info "Checking repository state..."
     
     if ! git diff-index --quiet HEAD --; then
-        log_error "Hay cambios sin commitear"
+        log_error "There are uncommitted changes"
         git status --porcelain
         exit 1
     fi
     
-    log_success "Repositorio limpio"
+    log_success "Repository is clean"
 }
 
-# Compilar el provider
+# Build the provider
 build_provider() {
-    log_info "Compilando el provider..."
+    log_info "Building the provider..."
     
     if ! make clean && make build; then
-        log_error "Error al compilar el provider"
+        log_error "Error building the provider"
         exit 1
     fi
     
-    log_success "Provider compilado correctamente"
+    log_success "Provider built successfully"
 }
 
-# Crear tag y release
+# Create tag and release
 create_release() {
     local version=$1
     
     if [ -z "$version" ]; then
-        log_error "Versión no especificada"
+        log_error "Version not specified"
         exit 1
     fi
     
-    # Verificar formato de versión (debe ser semantic version)
+    # Verify version format (must be semantic version)
     if [[ ! $version =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9]+)?$ ]]; then
-        log_error "Formato de versión inválido. Usa formato: v1.2.3 o v1.2.3-beta"
+        log_error "Invalid version format. Use format: v1.2.3 or v1.2.3-beta"
         exit 1
     fi
     
-    log_info "Creando release $version..."
+    log_info "Creating release $version..."
     
-    # Verificar que el tag no existe
+    # Verify that the tag doesn't exist
     if git tag -l | grep -q "^$version$"; then
-        log_error "El tag $version ya existe"
+        log_error "Tag $version already exists"
         exit 1
     fi
     
-    # Crear tag
+    # Create tag
     git tag -a "$version" -m "Release $version"
     
     # Push tag
     git push origin "$version"
     
-    log_success "Release $version creado y pusheado"
-    log_info "GitHub Actions debería estar ejecutando el build automático"
-    log_info "Puedes monitorear en: https://github.com/andredelgadoruiz/terraform-provider-gorules/actions"
+    log_success "Release $version created and pushed"
+    log_info "GitHub Actions should be running the automatic build"
+    log_info "You can monitor at: https://github.com/andredelgadoruiz/terraform-provider-gorules/actions"
 }
 
-# Mostrar ayuda
+# Show help
 show_help() {
     echo "GoRules Terraform Provider Release Helper"
     echo ""
-    echo "Uso: $0 [comando] [opciones]"
+    echo "Usage: $0 [command] [options]"
     echo ""
-    echo "Comandos:"
-    echo "  check       Verificar prerrequisitos y estado del repo"
-    echo "  build       Compilar el provider"
-    echo "  release     Crear un nuevo release"
-    echo "  help        Mostrar esta ayuda"
+    echo "Commands:"
+    echo "  check       Check prerequisites and repository state"
+    echo "  build       Build the provider"
+    echo "  release     Create a new release"
+    echo "  help        Show this help"
     echo ""
-    echo "Ejemplos:"
+    echo "Examples:"
     echo "  $0 check"
     echo "  $0 build"
     echo "  $0 release v0.1.0"
     echo "  $0 release v0.1.1-beta"
 }
 
-# Función principal
+# Main function
 main() {
     local command=$1
     
@@ -167,12 +167,12 @@ main() {
             show_help
             ;;
         *)
-            log_error "Comando desconocido: $command"
+            log_error "Unknown command: $command"
             show_help
             exit 1
             ;;
     esac
 }
 
-# Ejecutar función principal con todos los argumentos
+# Execute main function with all arguments
 main "$@"
