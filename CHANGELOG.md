@@ -58,5 +58,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Proper state management and drift detection
 - Resource import capabilities
 
-[Unreleased]: https://github.com/andredelgadoruiz/terraform-provider-gorules/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/andredelgadoruiz/terraform-provider-gorules/releases/tag/v0.1.0
+[Unreleased]: https://github.com/andredelgado-ruiz/terraform-provider-gorules/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/andredelgado-ruiz/terraform-provider-gorules/releases/tag/v0.1.0

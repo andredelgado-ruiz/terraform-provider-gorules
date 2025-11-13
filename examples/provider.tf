@@ -6,7 +6,7 @@
 terraform {
   required_providers {
     gorules = {
-      source  = "andredelgadoruiz/gorules"
+      source  = "andredelgado-ruiz/gorules"
       version = "~> 0.1.0"
     }
   }
@@ -25,7 +25,7 @@ provider "gorules" {
 terraform {
   required_providers {
     gorules = {
-      source  = "andredelgadoruiz/gorules"
+      source  = "andredelgado-ruiz/gorules"
       version = "~> 0.1.0"
     }
   }

@@ -121,7 +121,7 @@ create_release() {
     
     log_success "Release $version created and pushed"
     log_info "GitHub Actions should be running the automatic build"
-    log_info "You can monitor at: https://github.com/andredelgadoruiz/terraform-provider-gorules/actions"
+    log_info "You can monitor at: https://github.com/andredelgado-ruiz/terraform-provider-gorules/actions"
 }
 
 # Show help

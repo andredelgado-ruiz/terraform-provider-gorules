@@ -1,4 +1,4 @@
-module github.com/andredelgadoruiz/terraform-provider-gorules
+module github.com/andredelgado-ruiz/terraform-provider-gorules
 
 go 1.24.0
 

@@ -1,7 +1,7 @@
 # Nombre del provider y metadata
 NAME=gorules
-NAMESPACE=andredelgadoruiz
-VERSION=0.0.1
+NAMESPACE=andredelgado-ruiz
+VERSION=0.1.2
 
 # Detecta OS y arquitectura automáticamente
 OS := $(shell go env GOOS)

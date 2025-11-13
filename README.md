@@ -16,7 +16,7 @@ A Terraform provider for managing resources in GoRules Business Rules Management
 terraform {
   required_providers {
     gorules = {
-      source  = "andredelgadoruiz/gorules"
+      source  = "andredelgado-ruiz/gorules"
       version = "~> 0.1.0"
     }
   }
@@ -149,5 +149,5 @@ This project is licensed under the Mozilla Public License 2.0 - see the [LICENSE
 ## Support
 
 For issues and questions:
-- GitHub Issues: [Issues](https://github.com/andredelgadoruiz/terraform-provider-gorules/issues)
+- GitHub Issues: [Issues](https://github.com/andredelgado-ruiz/terraform-provider-gorules/issues)
 - Documentation: [GoRules Documentation](https://gorules.io/docs)
