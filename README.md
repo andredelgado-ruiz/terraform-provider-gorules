@@ -113,6 +113,23 @@ Manages groups within a GoRules project.
 
 - `id` (String) - Group UUID
 
+### `gorules_role`
+
+Manages organisation-level roles, including the mapping of identity provider groups to projects. Group mapping requires the OIDC SSO provider (`SSO_OAUTH2_PROVIDER=oidc`) with `SSO_OAUTH2_ROLES_MAPPING_ENABLED=true`. Users assigned to a role (manually or by SSO login) are not managed and are preserved on update.
+
+#### Arguments
+
+- `name` (String, Required) - Role name
+- `description` (String, Optional) - Role description
+- `idp_groups` (Set of String, Optional) - Identity provider group names mapped to the role
+- `all_projects` (Boolean, Optional) - Apply the role to all projects (default `false`)
+- `project_ids` (Set of String, Optional) - Project IDs the role applies to
+- `permissions` (Set of String, Required) - Project permissions granted by the role
+
+#### Attributes
+
+- `id` (String) - Role UUID
+
 ## Development
 
 ### Building the Provider

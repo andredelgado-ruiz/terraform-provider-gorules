@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- `gorules_role` resource to manage organisation roles that map identity provider groups to projects
+
 ## [0.1.0] - 2025-10-22
 
 ### Added

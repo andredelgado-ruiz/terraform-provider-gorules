@@ -48,6 +48,14 @@ resource "gorules_group" "developers" {
   permissions = ["read", "write"]  # Lista de permisos
 }
 
+# Ejemplo: Mapear un grupo del IdP (Okta) a un proyecto con permiso de lectura
+resource "gorules_role" "viewers" {
+  name        = "Example Viewers"
+  idp_groups  = ["okta-example-viewers"]
+  project_ids = [gorules_project.example.id]
+  permissions = ["documents:view-content"]
+}
+
 # Outputs útiles
 output "project_id" {
   description = "ID del proyecto creado"
