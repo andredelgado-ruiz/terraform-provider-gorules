@@ -78,6 +78,7 @@ func (p *gorulesProvider) Resources(context.Context) []func() resource.Resource 
 		NewProjectResource,     // project resource
 		NewEnvironmentResource, // environment resource
 		NewGroupResource,       // group resource
+		NewRoleResource,        // role resource
 	}
 }
 
